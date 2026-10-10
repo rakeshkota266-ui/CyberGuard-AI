@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0b1220">
+    <meta name="description" content="CyberGuard AI demonstrates AI-assisted IoT cybersecurity threat analysis using Amazon Bedrock and MCP.">
     <title>CyberGuard AI | IoT Security Dashboard</title>
 
     <style>
@@ -12,83 +13,112 @@
             box-sizing: border-box;
         }
 
+        html {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            overflow-x: clip;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            width: 100%;
+            max-width: 100%;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
             background: #0b1220;
-            color: white;
+            color: #ffffff;
+            overflow-x: clip;
         }
 
         .container {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 32px 20px;
         }
 
         .header {
+            width: 100%;
             text-align: center;
             margin-bottom: 35px;
+            overflow-wrap: anywhere;
         }
 
         .header h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
+            font-size: clamp(30px, 5vw, 46px);
+            margin: 12px 0;
+            line-height: 1.2;
         }
 
         .header p {
             color: #aab4c3;
             font-size: 17px;
+            line-height: 1.6;
+            margin: 12px 0;
         }
 
         .badge {
             display: inline-block;
+            max-width: 100%;
             padding: 8px 14px;
             border-radius: 20px;
             background: #14233d;
             color: #64b5ff;
             font-size: 13px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            overflow-wrap: anywhere;
         }
 
         .card {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
             background: #111b2e;
             border: 1px solid #243452;
             border-radius: 16px;
             padding: 28px;
-            margin-bottom: 25px;
-            min-width: 0;
-            max-width: 100%;
+            margin: 0 0 25px;
         }
 
         .card h2 {
-            margin-top: 0;
+            margin: 0 0 18px;
+            font-size: 26px;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
+            width: 100%;
+            min-width: 0;
             margin-top: 20px;
         }
 
         .stat-card {
-            padding: 20px;
-            border-radius: 12px;
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
+            padding: 22px 12px;
+            border-radius: 14px;
             text-align: center;
             border: 1px solid #34445f;
             background: #0b1220;
-            min-width: 0;
+            overflow-wrap: anywhere;
         }
 
         .stat-card h3 {
-            margin: 0 0 12px;
-            font-size: 16px;
+            margin: 0 0 14px;
+            font-size: 18px;
+            line-height: 1.4;
         }
 
         .stat-card p {
             margin: 0;
-            font-size: 32px;
+            font-size: 34px;
             font-weight: bold;
         }
 
@@ -115,31 +145,46 @@
         }
 
         input {
+            display: block;
             width: 100%;
+            min-width: 0;
+            max-width: 100%;
             padding: 14px;
             border-radius: 8px;
             border: 1px solid #34445f;
             background: #0b1220;
-            color: white;
+            color: #ffffff;
             font-size: 16px;
-            min-width: 0;
+        }
+
+        input:focus {
+            outline: 2px solid #60a5fa;
+            outline-offset: 2px;
         }
 
         button {
-            margin-top: 20px;
+            display: block;
             width: 100%;
+            max-width: 100%;
+            margin-top: 20px;
             padding: 15px;
             border: none;
             border-radius: 8px;
             background: #2563eb;
-            color: white;
+            color: #ffffff;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            overflow-wrap: anywhere;
         }
 
         button:hover {
             background: #1d4ed8;
+        }
+
+        button:focus-visible {
+            outline: 2px solid #93c5fd;
+            outline-offset: 3px;
         }
 
         button:disabled {
@@ -163,7 +208,9 @@
         .risk {
             font-size: 26px;
             font-weight: bold;
+            line-height: 1.4;
             margin: 15px 0;
+            overflow-wrap: anywhere;
         }
 
         .high {
@@ -179,15 +226,17 @@
         }
 
         .recommendation {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
             margin: 15px 0 20px;
             padding: 16px;
             border-radius: 10px;
             background: #14233d;
             border: 1px solid #34445f;
             color: #dbeafe;
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-wrap: anywhere;
-            max-width: 100%;
         }
 
         .recommendation strong {
@@ -196,14 +245,13 @@
             color: #64b5ff;
         }
 
-        /* Corrected AI analysis layout */
         #analysis {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
             color: #dbeafe;
             line-height: 1.8;
             overflow-wrap: anywhere;
-            word-break: normal;
-            max-width: 100%;
-            min-width: 0;
         }
 
         #analysis p,
@@ -239,7 +287,12 @@
         }
 
         #analysis strong {
-            color: white;
+            color: #ffffff;
+        }
+
+        #activityList {
+            width: 100%;
+            min-width: 0;
         }
 
         #activityList p {
@@ -247,470 +300,544 @@
         }
 
         .activity-meta {
+            display: block;
             color: #aab4c3;
             font-size: 12px;
+            margin-top: 8px;
         }
 
-        /* Corrected footer */
         .footer {
+            width: 100%;
             text-align: center;
             color: #718096;
             margin-top: 35px;
+            padding-bottom: 12px;
             font-size: 13px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             .container {
-                padding: 20px 12px;
+                padding: 22px 14px;
+            }
+
+            .header {
+                margin-bottom: 25px;
             }
 
             .header h1 {
                 font-size: 32px;
             }
 
+            .header p {
+                font-size: 15px;
+            }
+
             .card {
-                padding: 20px;
+                padding: 20px 16px;
+                border-radius: 12px;
+            }
+
+            .card h2 {
+                font-size: 22px;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 18px 12px;
+            }
+
+            .stat-card h3 {
+                font-size: 16px;
+            }
+
+            .stat-card p {
+                font-size: 30px;
             }
 
             .risk {
                 font-size: 22px;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-<div class="container">
+    <main class="container">
 
-    <header class="header">
-        <div class="badge">AWS Bedrock • MCP • IoT Security</div>
-        <h1>🛡️ CyberGuard AI</h1>
-        <p>AI-powered IoT cybersecurity threat detection and analysis</p>
-    </header>
+        <header class="header">
+            <div class="badge">AWS Bedrock • MCP • IoT Security</div>
+            <h1>🛡️ CyberGuard AI</h1>
+            <p>AI-powered IoT cybersecurity threat detection and analysis</p>
+        </header>
 
-    <section class="card">
-        <h2>Security Overview</h2>
+        <section class="card" aria-labelledby="overviewTitle">
+            <h2 id="overviewTitle">Security Overview</h2>
 
-        <div class="stats-grid">
-            <div class="stat-card high-stat">
-                <h3>High Risk</h3>
-                <p id="highCount">0</p>
+            <div class="stats-grid">
+                <div class="stat-card high-stat">
+                    <h3>High Risk</h3>
+                    <p id="highCount">0</p>
+                </div>
+
+                <div class="stat-card medium-stat">
+                    <h3>Medium Risk</h3>
+                    <p id="mediumCount">0</p>
+                </div>
+
+                <div class="stat-card low-stat">
+                    <h3>Low Risk</h3>
+                    <p id="lowCount">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" aria-labelledby="deviceTitle">
+            <h2 id="deviceTitle">Analyze IoT Device</h2>
+
+            <form id="analyzeForm">
+                <label for="device">Device Name</label>
+                <input
+                    id="device"
+                    name="device"
+                    type="text"
+                    value="Smart Camera"
+                    placeholder="Example: Smart Camera"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="traffic">Traffic Multiplier</label>
+                <input
+                    id="traffic"
+                    name="traffic"
+                    type="number"
+                    value="5"
+                    min="0"
+                    step="0.1"
+                    placeholder="Example: 5"
+                    required
+                >
+
+                <button id="analyzeButton" type="submit">
+                    🔍 Analyze Threat
+                </button>
+            </form>
+        </section>
+
+        <section class="card" aria-labelledby="activityTitle">
+            <h2 id="activityTitle">🕒 Recent Security Activity</h2>
+
+            <div id="activityList" aria-live="polite">
+                <p>No security activity yet. Analyze a device to begin.</p>
             </div>
 
-            <div class="stat-card medium-stat">
-                <h3>Medium Risk</h3>
-                <p id="mediumCount">0</p>
-            </div>
+            <button
+                id="clearActivityButton"
+                class="secondary-button"
+                type="button"
+            >
+                Clear Activity History
+            </button>
+        </section>
 
-            <div class="stat-card low-stat">
-                <h3>Low Risk</h3>
-                <p id="lowCount">0</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="card">
-        <h2>Analyze IoT Device</h2>
-
-        <label for="device">Device Name</label>
-        <input
-            id="device"
-            type="text"
-            value="Smart Camera"
-            placeholder="Example: Smart Camera"
-            maxlength="100"
+        <section
+            class="card result"
+            id="result"
+            aria-labelledby="resultTitle"
+            aria-live="polite"
         >
+            <h2 id="resultTitle">Security Analysis</h2>
+            <div id="risk" class="risk"></div>
+            <div id="recommendation" class="recommendation"></div>
+            <div id="analysis"></div>
+        </section>
 
-        <label for="traffic">Traffic Multiplier</label>
-        <input
-            id="traffic"
-            type="number"
-            value="5"
-            min="0"
-            step="0.1"
-            placeholder="Example: 5"
-        >
+        <footer class="footer">
+            CyberGuard AI • Built with Amazon Bedrock, Nova 2 Lite &amp; MCP
+        </footer>
 
-        <button id="analyzeButton" type="button" onclick="analyzeThreat()">
-            🔍 Analyze Threat
-        </button>
-    </section>
+    </main>
 
-    <section class="card">
-        <h2>🕒 Recent Security Activity</h2>
+    <script>
+        "use strict";
 
-        <div id="activityList">
-            <p>No security activity yet. Analyze a device to begin.</p>
-        </div>
+        const COUNTS_KEY = "cyberGuardCounts";
+        const ACTIVITY_KEY = "cyberGuardActivity";
 
-        <button
-            id="clearActivityButton"
-            class="secondary-button"
-            type="button"
-        >
-            Clear Activity History
-        </button>
-    </section>
-
-    <section class="card result" id="result" aria-live="polite">
-        <h2>Security Analysis</h2>
-        <div id="risk" class="risk"></div>
-        <div id="recommendation" class="recommendation"></div>
-        <div id="analysis"></div>
-    </section>
-
-    <footer class="footer">
-        CyberGuard AI • Built with Amazon Bedrock, Nova 2 Lite &amp; MCP
-    </footer>
-
-</div>
-
-<script>
-"use strict";
-
-const COUNTS_KEY = "cyberGuardCounts";
-const ACTIVITY_KEY = "cyberGuardActivity";
-
-function escapeHTML(text) {
-    return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-/* Corrected Markdown inline formatting */
-function formatInline(text) {
-    let safe = escapeHTML(text);
-
-    safe = safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-    safe = safe.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>");
-
-    return safe;
-}
-
-/* Format AI response headings, lists, and paragraphs */
-function formatAnalysis(text) {
-    const lines = String(text).split(/\r?\n/);
-    let html = "";
-    let inList = false;
-
-    function closeList() {
-        if (inList) {
-            html += "</ul>";
-            inList = false;
-        }
-    }
-
-    for (const originalLine of lines) {
-        const line = originalLine.trim();
-
-        if (!line || line === "---" || line === "***") {
-            closeList();
-            continue;
+        function escapeHTML(text) {
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
 
-        const heading = line.match(/^(#{1,3})\s+(.+)$/);
+        function formatInline(text) {
+            let safe = escapeHTML(text);
 
-        if (heading) {
-            closeList();
-            const level = heading[1].length;
-            html += `<h${level}>${formatInline(heading[2])}</h${level}>`;
-            continue;
+            safe = safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+            safe = safe.replace(
+                /(^|[^*])\*([^*\n]+)\*(?!\*)/g,
+                "$1<em>$2</em>"
+            );
+
+            return safe;
         }
 
-        const bullet = line.match(/^[-*]\s+(.+)$/);
+        function formatAnalysis(text) {
+            const lines = String(text).split(/\r?\n/);
+            let html = "";
+            let inList = false;
 
-        if (bullet) {
-            if (!inList) {
-                html += "<ul>";
-                inList = true;
+            function closeList() {
+                if (inList) {
+                    html += "</ul>";
+                    inList = false;
+                }
             }
 
-            html += `<li>${formatInline(bullet[1])}</li>`;
-            continue;
-        }
+            for (const originalLine of lines) {
+                const line = originalLine.trim();
 
-        closeList();
-        html += `<p>${formatInline(line)}</p>`;
-    }
+                if (!line || line === "---" || line === "***") {
+                    closeList();
+                    continue;
+                }
 
-    closeList();
-    return html;
-}
+                const heading = line.match(/^(#{1,3})\s+(.+)$/);
 
-/* Safely read browser storage */
-function readStorage(key, fallback) {
-    try {
-        const value = localStorage.getItem(key);
-        return value === null ? fallback : JSON.parse(value);
-    } catch (error) {
-        console.warn("Could not read browser storage:", error);
-        return fallback;
-    }
-}
+                if (heading) {
+                    closeList();
 
-/* Risk counters */
-function getSavedCounts() {
-    const saved = readStorage(COUNTS_KEY, {});
+                    const level = heading[1].length;
+                    html += `<h${level}>${formatInline(heading[2])}</h${level}>`;
+                    continue;
+                }
 
-    return {
-        HIGH: Number(saved.HIGH) || 0,
-        MEDIUM: Number(saved.MEDIUM) || 0,
-        LOW: Number(saved.LOW) || 0
-    };
-}
+                const bullet = line.match(/^[-*]\s+(.+)$/);
 
-function displayCounts(counts) {
-    document.getElementById("highCount").textContent = counts.HIGH;
-    document.getElementById("mediumCount").textContent = counts.MEDIUM;
-    document.getElementById("lowCount").textContent = counts.LOW;
-}
+                if (bullet) {
+                    if (!inList) {
+                        html += "<ul>";
+                        inList = true;
+                    }
 
-function loadSavedCounts() {
-    displayCounts(getSavedCounts());
-}
+                    html += `<li>${formatInline(bullet[1])}</li>`;
+                    continue;
+                }
 
-/* Persistent activity history */
-function getSavedActivities() {
-    const saved = readStorage(ACTIVITY_KEY, []);
-    return Array.isArray(saved) ? saved : [];
-}
-
-function renderSavedActivity() {
-    const activities = getSavedActivities();
-    const activityList = document.getElementById("activityList");
-
-    activityList.replaceChildren();
-
-    if (activities.length === 0) {
-        const message = document.createElement("p");
-        message.textContent =
-            "No security activity yet. Analyze a device to begin.";
-        activityList.appendChild(message);
-        return;
-    }
-
-    activities.forEach(function(item) {
-        const entry = document.createElement("div");
-        entry.className = "recommendation";
-
-        const heading = document.createElement("strong");
-        heading.textContent = (item.risk || "UNKNOWN") + " Risk";
-
-        const deviceLine = document.createElement("p");
-        deviceLine.textContent = "Device: " + (item.device || "Unknown");
-
-        const trafficLine = document.createElement("p");
-        trafficLine.textContent = "Traffic: " + item.traffic + "x normal";
-
-        const timestamp = document.createElement("small");
-        timestamp.className = "activity-meta";
-        timestamp.textContent = item.time || "";
-
-        entry.append(heading, deviceLine, trafficLine, timestamp);
-        activityList.appendChild(entry);
-    });
-}
-
-function addActivity(device, traffic, riskLevel) {
-    const activities = getSavedActivities();
-
-    activities.unshift({
-        device: device,
-        traffic: traffic,
-        risk: riskLevel,
-        time: new Date().toLocaleString()
-    });
-
-    try {
-        localStorage.setItem(
-            ACTIVITY_KEY,
-            JSON.stringify(activities.slice(0, 10))
-        );
-    } catch (error) {
-        console.warn("Could not save activity history:", error);
-    }
-
-    renderSavedActivity();
-}
-
-/* Display errors without breaking the dashboard */
-function showError(message) {
-    const result = document.getElementById("result");
-
-    document.getElementById("risk").textContent = "Analysis Error";
-    document.getElementById("risk").className = "risk high";
-    document.getElementById("recommendation").textContent = "";
-    document.getElementById("analysis").textContent = message;
-
-    result.style.display = "block";
-}
-
-/* Call the existing FastAPI endpoint */
-async function analyzeThreat() {
-    const deviceInput = document.getElementById("device");
-    const trafficInput = document.getElementById("traffic");
-    const button = document.getElementById("analyzeButton");
-    const result = document.getElementById("result");
-    const risk = document.getElementById("risk");
-    const analysis = document.getElementById("analysis");
-    const recommendation = document.getElementById("recommendation");
-
-    const device = deviceInput.value.trim();
-    const trafficText = trafficInput.value.trim();
-    const traffic = Number(trafficText);
-
-    if (!device) {
-        showError("Please enter a device name.");
-        deviceInput.focus();
-        return;
-    }
-
-    if (
-        trafficText === "" ||
-        !Number.isFinite(traffic) ||
-        traffic < 0
-    ) {
-        showError("Please enter a valid traffic multiplier of 0 or greater.");
-        trafficInput.focus();
-        return;
-    }
-
-    result.style.display = "block";
-    risk.className = "risk";
-    risk.textContent = "Analyzing...";
-    recommendation.textContent = "Preparing security recommendations...";
-    analysis.textContent =
-        "CyberGuard AI is checking the device using MCP and Amazon Bedrock.";
-
-    button.disabled = true;
-    button.textContent = "⏳ Analyzing...";
-
-    try {
-        const url =
-            `/api/analyze?device=${encodeURIComponent(device)}` +
-            `&traffic=${encodeURIComponent(traffic)}`;
-
-        const response = await fetch(url);
-        const responseText = await response.text();
-
-        let data;
-
-        try {
-            data = JSON.parse(responseText);
-        } catch {
-            throw new Error(
-                "The server returned an unexpected response. Check both VS Code terminals."
-            );
-        }
-
-        if (!response.ok) {
-            throw new Error(
-                data.detail || "Analysis failed. Please try again."
-            );
-        }
-
-        const riskLevel = String(data.risk || "UNKNOWN").toUpperCase();
-
-        risk.textContent = "Risk Level: " + riskLevel;
-        risk.className = "risk";
-
-        if (["HIGH", "MEDIUM", "LOW"].includes(riskLevel)) {
-            risk.classList.add(riskLevel.toLowerCase());
-        }
-
-        const recommendations = {
-            HIGH: {
-                title: "🚨 Immediate Action Recommended",
-                text: "Investigate the device, review network traffic and security logs, and isolate it if compromise is suspected."
-            },
-            MEDIUM: {
-                title: "⚠️ Further Investigation Recommended",
-                text: "Review device activity, verify recent connections, and monitor traffic for unusual behavior."
-            },
-            LOW: {
-                title: "✅ Routine Monitoring",
-                text: "No major traffic anomaly was detected by this basic check. Continue monitoring the device."
+                closeList();
+                html += `<p>${formatInline(line)}</p>`;
             }
-        };
 
-        const advice = recommendations[riskLevel];
+            closeList();
+            return html;
+        }
 
-        recommendation.replaceChildren();
+        function readStorage(key, fallback) {
+            try {
+                const value = localStorage.getItem(key);
+                return value === null ? fallback : JSON.parse(value);
+            } catch (error) {
+                console.warn("Could not read browser storage:", error);
+                return fallback;
+            }
+        }
 
-        const adviceTitle = document.createElement("strong");
-        adviceTitle.textContent = advice
-            ? advice.title
-            : "Security Recommendation";
+        function getSavedCounts() {
+            const saved = readStorage(COUNTS_KEY, {});
 
-        const adviceText = document.createElement("span");
-        adviceText.textContent = advice
-            ? advice.text
-            : "Review the AI analysis for recommended actions.";
+            return {
+                HIGH: Number(saved.HIGH) || 0,
+                MEDIUM: Number(saved.MEDIUM) || 0,
+                LOW: Number(saved.LOW) || 0
+            };
+        }
 
-        recommendation.append(adviceTitle, adviceText);
+        function displayCounts(counts) {
+            document.getElementById("highCount").textContent = counts.HIGH;
+            document.getElementById("mediumCount").textContent = counts.MEDIUM;
+            document.getElementById("lowCount").textContent = counts.LOW;
+        }
 
-        analysis.innerHTML = formatAnalysis(
-            data.analysis || "No AI analysis was returned."
-        );
+        function loadSavedCounts() {
+            displayCounts(getSavedCounts());
+        }
 
-        if (["HIGH", "MEDIUM", "LOW"].includes(riskLevel)) {
-            const counts = getSavedCounts();
-            counts[riskLevel] += 1;
+        function getSavedActivities() {
+            const saved = readStorage(ACTIVITY_KEY, []);
+            return Array.isArray(saved) ? saved : [];
+        }
+
+        function renderSavedActivity() {
+            const activities = getSavedActivities();
+            const activityList = document.getElementById("activityList");
+
+            activityList.replaceChildren();
+
+            if (activities.length === 0) {
+                const message = document.createElement("p");
+                message.textContent =
+                    "No security activity yet. Analyze a device to begin.";
+                activityList.appendChild(message);
+                return;
+            }
+
+            activities.forEach(function(item) {
+                const entry = document.createElement("div");
+                entry.className = "recommendation";
+
+                const heading = document.createElement("strong");
+                heading.textContent = (item.risk || "UNKNOWN") + " Risk";
+
+                const deviceLine = document.createElement("p");
+                deviceLine.textContent =
+                    "Device: " + (item.device || "Unknown");
+
+                const trafficLine = document.createElement("p");
+                trafficLine.textContent =
+                    "Traffic: " + item.traffic + "x normal";
+
+                const timestamp = document.createElement("small");
+                timestamp.className = "activity-meta";
+                timestamp.textContent = item.time || "";
+
+                entry.append(
+                    heading,
+                    deviceLine,
+                    trafficLine,
+                    timestamp
+                );
+
+                activityList.appendChild(entry);
+            });
+        }
+
+        function addActivity(device, traffic, riskLevel) {
+            const activities = getSavedActivities();
+
+            activities.unshift({
+                device: device,
+                traffic: traffic,
+                risk: riskLevel,
+                time: new Date().toLocaleString()
+            });
 
             try {
                 localStorage.setItem(
-                    COUNTS_KEY,
-                    JSON.stringify(counts)
+                    ACTIVITY_KEY,
+                    JSON.stringify(activities.slice(0, 10))
                 );
             } catch (error) {
-                console.warn("Could not save risk counters:", error);
+                console.warn("Could not save activity history:", error);
             }
 
-            displayCounts(counts);
-            addActivity(device, traffic, riskLevel);
-        }
-    } catch (error) {
-        showError(
-            error.message || "Something went wrong during analysis."
-        );
-        console.error("CyberGuard AI analysis failed:", error);
-    } finally {
-        button.disabled = false;
-        button.textContent = "🔍 Analyze Threat";
-    }
-}
-
-/* Clear activity without resetting the risk counters */
-document
-    .getElementById("clearActivityButton")
-    .addEventListener("click", function() {
-        const confirmed = confirm(
-            "Clear all saved security activity? This will not reset the risk counters."
-        );
-
-        if (!confirmed) {
-            return;
+            renderSavedActivity();
         }
 
-        try {
-            localStorage.removeItem(ACTIVITY_KEY);
-        } catch (error) {
-            console.warn("Could not clear activity history:", error);
+        function showError(message) {
+            const result = document.getElementById("result");
+            const risk = document.getElementById("risk");
+
+            risk.textContent = "Analysis Error";
+            risk.className = "risk high";
+
+            document.getElementById("recommendation").textContent = "";
+            document.getElementById("analysis").textContent = message;
+
+            result.style.display = "block";
         }
 
+        async function analyzeThreat() {
+            const deviceInput = document.getElementById("device");
+            const trafficInput = document.getElementById("traffic");
+            const button = document.getElementById("analyzeButton");
+            const result = document.getElementById("result");
+            const risk = document.getElementById("risk");
+            const analysis = document.getElementById("analysis");
+            const recommendation = document.getElementById("recommendation");
+
+            const device = deviceInput.value.trim();
+            const trafficText = trafficInput.value.trim();
+            const traffic = Number(trafficText);
+
+            if (!device) {
+                showError("Please enter a device name.");
+                deviceInput.focus();
+                return;
+            }
+
+            if (
+                trafficText === "" ||
+                !Number.isFinite(traffic) ||
+                traffic < 0
+            ) {
+                showError(
+                    "Please enter a valid traffic multiplier of 0 or greater."
+                );
+                trafficInput.focus();
+                return;
+            }
+
+            result.style.display = "block";
+            risk.className = "risk";
+            risk.textContent = "Analyzing...";
+
+            recommendation.textContent =
+                "Preparing security recommendations...";
+
+            analysis.textContent =
+                "CyberGuard AI is checking the device using MCP and Amazon Bedrock.";
+
+            button.disabled = true;
+            button.textContent = "⏳ Analyzing...";
+
+            try {
+                const url =
+                    `/api/analyze?device=${encodeURIComponent(device)}` +
+                    `&traffic=${encodeURIComponent(traffic)}`;
+
+                const response = await fetch(url);
+                const responseText = await response.text();
+
+                let data;
+
+                try {
+                    data = JSON.parse(responseText);
+                } catch {
+                    throw new Error(
+                        "The server returned an unexpected response. Check both VS Code terminals."
+                    );
+                }
+
+                if (!response.ok) {
+                    throw new Error(
+                        data.detail || "Analysis failed. Please try again."
+                    );
+                }
+
+                const riskLevel = String(data.risk || "UNKNOWN").toUpperCase();
+
+                risk.textContent = "Risk Level: " + riskLevel;
+                risk.className = "risk";
+
+                if (["HIGH", "MEDIUM", "LOW"].includes(riskLevel)) {
+                    risk.classList.add(riskLevel.toLowerCase());
+                }
+
+                const recommendations = {
+                    HIGH: {
+                        title: "🚨 Immediate Action Recommended",
+                        text: "Investigate the device, review network traffic and security logs, and isolate it if compromise is suspected."
+                    },
+                    MEDIUM: {
+                        title: "⚠️ Further Investigation Recommended",
+                        text: "Review device activity, verify recent connections, and monitor traffic for unusual behavior."
+                    },
+                    LOW: {
+                        title: "✅ Routine Monitoring",
+                        text: "No major traffic anomaly was detected by this basic check. Continue monitoring the device."
+                    }
+                };
+
+                const advice = recommendations[riskLevel];
+
+                recommendation.replaceChildren();
+
+                const adviceTitle = document.createElement("strong");
+                adviceTitle.textContent = advice
+                    ? advice.title
+                    : "Security Recommendation";
+
+                const adviceText = document.createElement("span");
+                adviceText.textContent = advice
+                    ? advice.text
+                    : "Review the AI analysis for recommended actions.";
+
+                recommendation.append(adviceTitle, adviceText);
+
+                analysis.innerHTML = formatAnalysis(
+                    data.analysis || "No AI analysis was returned."
+                );
+
+                if (["HIGH", "MEDIUM", "LOW"].includes(riskLevel)) {
+                    const counts = getSavedCounts();
+                    counts[riskLevel] += 1;
+
+                    try {
+                        localStorage.setItem(
+                            COUNTS_KEY,
+                            JSON.stringify(counts)
+                        );
+                    } catch (error) {
+                        console.warn(
+                            "Could not save risk counters:",
+                            error
+                        );
+                    }
+
+                    displayCounts(counts);
+                    addActivity(device, traffic, riskLevel);
+                }
+            } catch (error) {
+                showError(
+                    error.message || "Something went wrong during analysis."
+                );
+
+                console.error("CyberGuard AI analysis failed:", error);
+            } finally {
+                button.disabled = false;
+                button.textContent = "🔍 Analyze Threat";
+            }
+        }
+
+        document
+            .getElementById("analyzeForm")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
+                analyzeThreat();
+            });
+
+        document
+            .getElementById("clearActivityButton")
+            .addEventListener("click", function() {
+                const confirmed = confirm(
+                    "Clear all saved security activity? This will not reset the risk counters."
+                );
+
+                if (!confirmed) {
+                    return;
+                }
+
+                try {
+                    localStorage.removeItem(ACTIVITY_KEY);
+                } catch (error) {
+                    console.warn(
+                        "Could not clear activity history:",
+                        error
+                    );
+                }
+
+                renderSavedActivity();
+            });
+
+        loadSavedCounts();
         renderSavedActivity();
-    });
-
-/* Initialize dashboard */
-loadSavedCounts();
-renderSavedActivity();
-</script>
+    </script>
 </body>
 </html>
