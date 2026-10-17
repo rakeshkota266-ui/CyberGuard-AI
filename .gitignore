@@ -1,12 +1,22 @@
-# Python cache files
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+iotenv/
+
+# Python caches and test/tool output
 __pycache__/
 *.py[cod]
 *.pyo
-
-# Virtual environments
-venv/
-.venv/
-iotenv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
 
 # Environment variables and secrets
 .env
@@ -16,6 +26,11 @@ iotenv/
 *.pem
 *.key
 
+# Node.js dependencies and build output
+node_modules/
+dist/
+build/
+
 # Local databases and logs
 *.db
 *.sqlite3
@@ -24,9 +39,14 @@ iotenv/
 # Editor and operating system files
 .vscode/
 .idea/
+.vs/
 .DS_Store
 Thumbs.db
 
 # Temporary and generated files
 *.tmp
 *.bak
+
+# Keep only the final submission video from the demo working assets.
+demo_video/*
+!demo_video/CyberGuard_AI_Complete_Demo_Final.mp4
